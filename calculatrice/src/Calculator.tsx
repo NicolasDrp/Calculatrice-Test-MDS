@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { calculate } from "./utils/calculate";
 
 const Calculator: React.FC = () => {
   const [display, setDisplay] = useState<string>("0");
@@ -11,7 +12,7 @@ const Calculator: React.FC = () => {
 
   const handleOperatorClick = (op: string) => {
     if (previous && operator) {
-      calculate();
+      performCalculation();
     }
     setPrevious(display);
     setOperator(op);
@@ -20,35 +21,26 @@ const Calculator: React.FC = () => {
 
   const handleEqualsClick = () => {
     if (previous && operator) {
-      calculate();
+      performCalculation();
     }
   };
 
-  const calculate = () => {
-    let result: number;
+  const performCalculation = () => {
     const prevNum = parseFloat(previous || "0");
     const currentNum = parseFloat(display);
 
-    switch (operator) {
-      case "+":
-        result = prevNum + currentNum;
-        break;
-      case "-":
-        result = prevNum - currentNum;
-        break;
-      case "*":
-        result = prevNum * currentNum;
-        break;
-      case "/":
-        result = prevNum / currentNum;
-        break;
-      default:
-        return;
-    }
+    if (operator) {
+      const result = calculate(prevNum, currentNum, operator);
 
-    setDisplay(result.toString());
-    setOperator(null);
-    setPrevious(null);
+      if (result !== null) {
+        setDisplay(result.toString());
+      } else {
+        setDisplay("Error");
+      }
+
+      setOperator(null);
+      setPrevious(null);
+    }
   };
 
   const handleClearClick = () => {
