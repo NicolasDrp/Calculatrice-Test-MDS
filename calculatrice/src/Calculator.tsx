@@ -5,6 +5,7 @@ import {
   clearHistory,
   HistoryEntry,
 } from "./utils/historyManager";
+import "./Calculator.css";
 
 const Calculator: React.FC = () => {
   const [display, setDisplay] = useState<string>("0");
@@ -88,60 +89,82 @@ const Calculator: React.FC = () => {
   };
 
   return (
-    <div style={{ display: "flex", gap: "2rem" }}>
+    <div className="calculator-container">
       <div>
-        <div style={{ fontSize: "2rem", marginBottom: "1rem" }}>{display}</div>
-        <div>
+        <div className="display">{display}</div>
+        <div className="button-grid">
           <div>
-            <button onClick={() => handleNumberClick("1")}>1</button>
-            <button onClick={() => handleNumberClick("2")}>2</button>
-            <button onClick={() => handleNumberClick("3")}>3</button>
+            <button className="number" onClick={() => handleNumberClick("1")}>
+              1
+            </button>
+            <button className="number" onClick={() => handleNumberClick("2")}>
+              2
+            </button>
+            <button className="number" onClick={() => handleNumberClick("3")}>
+              3
+            </button>
             <button
+              className="operator"
               onClick={() => handleOperatorClick("+")}
               disabled={isError}
-              style={isError ? { opacity: 0.5, cursor: "not-allowed" } : {}}
             >
               +
             </button>
           </div>
           <div>
-            <button onClick={() => handleNumberClick("4")}>4</button>
-            <button onClick={() => handleNumberClick("5")}>5</button>
-            <button onClick={() => handleNumberClick("6")}>6</button>
+            <button className="number" onClick={() => handleNumberClick("4")}>
+              4
+            </button>
+            <button className="number" onClick={() => handleNumberClick("5")}>
+              5
+            </button>
+            <button className="number" onClick={() => handleNumberClick("6")}>
+              6
+            </button>
             <button
+              className="operator"
               onClick={() => handleOperatorClick("-")}
               disabled={isError}
-              style={isError ? { opacity: 0.5, cursor: "not-allowed" } : {}}
             >
               -
             </button>
           </div>
           <div>
-            <button onClick={() => handleNumberClick("7")}>7</button>
-            <button onClick={() => handleNumberClick("8")}>8</button>
-            <button onClick={() => handleNumberClick("9")}>9</button>
+            <button className="number" onClick={() => handleNumberClick("7")}>
+              7
+            </button>
+            <button className="number" onClick={() => handleNumberClick("8")}>
+              8
+            </button>
+            <button className="number" onClick={() => handleNumberClick("9")}>
+              9
+            </button>
             <button
+              className="operator"
               onClick={() => handleOperatorClick("*")}
               disabled={isError}
-              style={isError ? { opacity: 0.5, cursor: "not-allowed" } : {}}
             >
               *
             </button>
           </div>
           <div>
-            <button onClick={() => handleNumberClick("0")}>0</button>
+            <button className="number" onClick={() => handleNumberClick("0")}>
+              0
+            </button>
             <button
+              className="equals"
               onClick={handleEqualsClick}
               disabled={isError}
-              style={isError ? { opacity: 0.5, cursor: "not-allowed" } : {}}
             >
               =
             </button>
-            <button onClick={handleClearClick}>C</button>
+            <button className="clear" onClick={handleClearClick}>
+              C
+            </button>
             <button
+              className="operator"
               onClick={() => handleOperatorClick("/")}
               disabled={isError}
-              style={isError ? { opacity: 0.5, cursor: "not-allowed" } : {}}
             >
               /
             </button>
@@ -149,9 +172,9 @@ const Calculator: React.FC = () => {
         </div>
       </div>
 
-      <div>
+      <div className="history">
         <h3>Historique</h3>
-        <button onClick={handleClearHistory} style={{ marginBottom: "0.5rem" }}>
+        <button className="history-clear" onClick={handleClearHistory}>
           Effacer l'historique
         </button>
         <ul>
