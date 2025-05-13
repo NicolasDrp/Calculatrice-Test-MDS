@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { calculate } from "./utils/calculate";
-
-type HistoryItem = {
-  expression: string;
-  result: string;
-};
+import {
+  addToHistory,
+  clearHistory,
+  HistoryEntry,
+} from "./utils/historyManager";
 
 const Calculator: React.FC = () => {
   const [display, setDisplay] = useState<string>("0");
   const [previous, setPrevious] = useState<string | null>(null);
   const [operator, setOperator] = useState<string | null>(null);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
 
   const handleNumberClick = (number: string) => {
     setDisplay(display === "0" ? number : display + number);
@@ -43,8 +43,9 @@ const Calculator: React.FC = () => {
         const resultStr = result.toString();
         setDisplay(resultStr);
 
-        // Ajouter à l'historique
-        setHistory([{ expression, result: resultStr }, ...history]);
+        // Utiliser historyManager
+        const newHistory = addToHistory(history, expression, resultStr);
+        setHistory(newHistory);
       } else {
         setDisplay("Error");
       }
@@ -60,8 +61,7 @@ const Calculator: React.FC = () => {
     setOperator(null);
   };
 
-  const handleHistoryClick = (item: HistoryItem) => {
-    // Restaurer l'expression d'origine
+  const handleHistoryClick = (item: HistoryEntry) => {
     setDisplay(item.result);
     const parts = item.expression.split(" ");
     if (parts.length === 3) {
@@ -70,8 +70,8 @@ const Calculator: React.FC = () => {
     }
   };
 
-  const clearHistory = () => {
-    setHistory([]);
+  const handleClearHistory = () => {
+    setHistory(clearHistory());
   };
 
   return (
@@ -108,7 +108,7 @@ const Calculator: React.FC = () => {
 
       <div>
         <h3>Historique</h3>
-        <button onClick={clearHistory} style={{ marginBottom: "0.5rem" }}>
+        <button onClick={handleClearHistory} style={{ marginBottom: "0.5rem" }}>
           Effacer l'historique
         </button>
         <ul>
