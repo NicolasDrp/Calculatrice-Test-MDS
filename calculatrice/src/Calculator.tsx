@@ -70,6 +70,10 @@ const Calculator: React.FC = () => {
     }
   };
 
+  const clearHistory = () => {
+    setHistory([]);
+  };
+
   return (
     <div style={{ display: "flex", gap: "2rem" }}>
       <div>
@@ -104,6 +108,9 @@ const Calculator: React.FC = () => {
 
       <div>
         <h3>Historique</h3>
+        <button onClick={clearHistory} style={{ marginBottom: "0.5rem" }}>
+          Effacer l'historique
+        </button>
         <ul>
           {history.map((item, index) => (
             <li key={index}>
