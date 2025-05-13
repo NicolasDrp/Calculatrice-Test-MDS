@@ -1,0 +1,161 @@
+/* Style global pour le thème sombre */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 2rem;
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+.calculator-container {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.display {
+  font-size: 2rem;
+  background: #2c2c2c;
+  padding: 1rem;
+  border: 1px solid #444;
+  margin-bottom: 1rem;
+  min-width: 240px;
+  text-align: right;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.button-grid > div {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 60px;
+  transition: background-color 0.3s ease, transform 0.1s;
+  color: #fff;
+}
+
+button:hover:not(:disabled) {
+  background-color: #444;
+  transform: translateY(-2px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(2px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Historique avec style inspiré de la calculatrice Windows */
+.history {
+  min-width: 250px;
+  background: #2c2c2c;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.history h3 {
+  color: #f1f1f1;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.history button {
+  display: block;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: left;
+  background-color: #444;
+  border: 1px solid #555;
+  padding: 0.8rem;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.history button:hover {
+  background-color: #555;
+}
+
+.history button:disabled {
+  opacity: 0.5;
+}
+
+/* Boutons d'actions spécifiques (clear, égal, etc.) avec couleurs différentes inspirées de la calculatrice Apple */
+button.clear,
+.history button.clear {
+  background-color: #f76c6c; /* Rouge clair */
+  color: white;
+}
+
+button.clear:hover,
+.history button.clear:hover {
+  background-color: #f14c4c;
+}
+
+button.equals {
+  background-color: #4caf50; /* Vert */
+  color: white;
+}
+
+button.equals:hover {
+  background-color: #45a049;
+}
+
+button.operator {
+  background-color: #f9a825; /* Jaune orangé */
+  color: white;
+}
+
+button.operator:hover {
+  background-color: #f57f17;
+}
+
+button.number {
+  background-color: #00796b; /* Teal */
+  color: white;
+}
+
+button.number:hover {
+  background-color: #004d40;
+}
+
+button.special {
+  background-color: #8e24aa; /* Violet */
+  color: white;
+}
+
+button.special:hover {
+  background-color: #7b1fa2;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+button.history-clear {
+  background-color: #f76c6c; /* Rouge clair pour effacer l'historique */
+  color: white;
+}
+
+button.history-clear:hover {
+  background-color: #f14c4c;
+}
